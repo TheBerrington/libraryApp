@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поисковик Кинг - BooksSsearch</title>
+</head>
+<body>
+<form th:action="@{/books/search}">
+    <span>Введите поисковой запрос:</span>
+    <input type="text" th:name="sample">
+    <br/>
+    <input type="submit" value="Искать!"/>
+</form>
+<br/>
+
+<div th:if="${book != null}">
+    <a th:text="${book.getAuthor() + ', ' + book.getTitle() + ', ' + book.getYear()}">book</a>
+    <br/>
+    <br/>
+    <div th:if="${bookOwner != null}">
+        <hr/>
+        <span> Книга сейчас у:</span> <span th:text="${bookOwner.getName()}">Name</span>
+    </div>
+
+    <div th:if="${bookOwner == null}">
+        <hr/>
+        <span> Книга свободна</span>
+    </div>
+</div>
+
+<div th:if="${start == null and book == null}">
+    <span>Книг не найдено</span>
+    <br/>
+</div>
+
+</body>
+</html>
